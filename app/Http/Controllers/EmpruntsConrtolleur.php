@@ -15,7 +15,7 @@ class EmpruntsConrtolleur extends Controller
     public function index(): View
     {
         return view('emprunt.index', [
-            'emprunts' => Emprunts::paginate(6),
+            'emprunts' => Emprunts::paginate(3),
             'livres' => Livres::all(),
             'etudiants' => Etudiants::all(),
         ]);
@@ -52,6 +52,10 @@ class EmpruntsConrtolleur extends Controller
         $livre->date_retour_effective = $request->date_retour_effective;
 
         $livre->save();
+        // !! Update disponibilite status on table Livre
+        $changedBook = Livres::where('id_livre', $request->id_livre)->update([
+            'disponibilite' => 'emprunte',
+        ]);
         return redirect()->route('emprunt.create')->with('success', "L'emprunt a été ajouté avec succès");
     }
 

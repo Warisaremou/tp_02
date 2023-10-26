@@ -35,8 +35,12 @@
                             @foreach ($livres as $livre)
                                 @if ($emprunt_livre_id == $livre->id_livre)
                                     {{ $livre->titre }}
-                                    @if ($emprunt->date_retour_prevue == $currentDate)
-                                        <span class="badge text-bg-warning text-white">A retourner aujourd'hui</span>
+                                    @if ($emprunt->date_retour_effective == null)
+                                        @if ($emprunt->date_retour_prevue == $currentDate)
+                                            <span class="badge text-bg-warning text-white">A retourner aujourd'hui</span>
+                                        @endif
+                                    @else
+                                        <span class="badge text-bg-primary text-white">Déjà remis</span>
                                     @endif
                                     {{-- <a href="{{ route('emprunt.show', $livre->id_livre) }}">
                                         {{ $livre->titre }}

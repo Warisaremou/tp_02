@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div style="display: none;">
                         <div class="form-check form-switch col-5 mx-auto">
                             <input type="hidden" value="disponible" name="disponibilite">
                             <input @checked($value ?? false)

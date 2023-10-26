@@ -57,15 +57,15 @@
                         <h5>Date de l'emprunt {{ $emprunt->date_emprunt }}</h5>
                         <h5>Date de retour prévue {{ $emprunt->date_retour_prevue }}</h5>
                         @if ($emprunt->date_retour_effective)
-                            <h6 class="bg-primary p-2 text-white rounded" style="width: fit-content;">Retourné le:
+                            <h6 class="badge text-bg-primary p-1 text-white rounded">Retourné le:
                                 {{ $emprunt->date_retour_effective }}</h6>
                         @else
-                            <h5 class="badge text-bg-danger text-white">Pas encore retourné</h5>
+                            <h6 class="badge p-1 text-bg-danger text-white rounded">Pas encore retourné</h6>
                         @endif
                     </div>
                 </div>
             @empty
-                <h5 class="text-danger mt-3 text-center">Aucun emprunt n'est enregistre à cette date!</h5>
+                <h5 class="text-danger mt-3 text-center">Aucun emprunt n'est enregistré à cette date!</h5>
             @endforelse
         @endif
     </div>

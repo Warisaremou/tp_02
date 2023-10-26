@@ -23,7 +23,7 @@
                         <span
                             class="badge @if ($livre->disponibilite == 'disponible') text-bg-primary @else text-bg-warning text-white @endif"
                             style="position: absolute; top: 10px; right: 10px;">{{ $livre->disponibilite }}</span>
-                        <div class="d-flex justify-content-center gap-4">
+                        <div class="d-flex justify-content-center gap-4 @if ($livre->disponibilite == 'emprunte') opacity-0 @endif">
                             {{-- @dump($livre->id_livre) --}}
                             <a href="{{ route('livre.edit', $livre->id_livre) }}" class="btn btn-primary">Modifier</a>
                             <form method="POST" action="{{ route('livre.delete', $livre->id_livre) }}">
