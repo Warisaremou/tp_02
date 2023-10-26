@@ -1,0 +1,103 @@
+@extends('layout')
+
+@section('title', '- Modifier livre')
+
+@section('content')
+    <div class="container" style="max-width: 50rem;">
+        @include('livre.breadcrumb')
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title fw-medium mb-5 text-center">Modifier un livre</h3>
+
+                <form method="POST" action="{{ route('livre.update', $livre[0]->id_livre) }}" class="card-text">
+                    {{ method_field('patch') }}
+                    @csrf
+                    <div class="row mb-3">
+                        <label for="titre" class="col-md-4 col-form-label text-start">Titre:</label>
+                        <div class="col-md-6">
+                            <input id="titre" type="text" class="form-control @error('titre') is-invalid @enderror"
+                                name="titre" autofocus value="{{ old('nom', $livre[0]->titre) }}">
+                            @error('titre')
+                                <span class="invalid-feedback text-start" role="alert">
+                                    <p>{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="auteur" class="col-md-4 col-form-label text-start">Auteur:</label>
+
+                        <div class="col-md-6">
+                            <input id="auteur" type="text" class="form-control @error('auteur') is-invalid @enderror"
+                                name="auteur" autofocus value="{{ old('nom', $livre[0]->auteur) }}">
+                            @error('auteur')
+                                <span class="invalid-feedback text-start" role="alert">
+                                    <p>{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="resume" class="col-md-4 col-form-label text-start">Resume:</label>
+                        <div class="col-md-6">
+                            <input id="resume" type="texte" class="form-control @error('resume') is-invalid @enderror"
+                                name="resume" autofocus value="{{ old('nom', $livre[0]->resume) }}">
+                            @error('resume')
+                                <span class="invalid-feedback text-start" role="alert">
+                                    <p>{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="localisation" class="col-md-4 col-form-label text-start">Localisation:</label>
+                        <div class="col-md-6">
+                            <input id="localisation" type="text"
+                                class="form-control @error('localisation') is-invalid @enderror" name="localisation"
+                                autofocus value="{{ old('nom', $livre[0]->localisation) }}">
+                            @error('localisation')
+                                <span class="invalid-feedback text-start" role="alert">
+                                    <p>{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-check form-switch col-5 mx-auto">
+                            <input type="hidden" value="disponible" name="disponibilite">
+                            <input @checked(old('disponibilite', $livre[0]->disponibilite) == 'emprunte' ? true : false)
+                                class="form-check-input @error('disponibilite')
+is-invalid
+@enderror" type="checkbox"
+                                role="switch" id="disponibilite" value="emprunte" name="disponibilite">
+                            <label class="form-check-label" for="disponibilite">
+                                Disponible ou Emprunté
+                            </label>
+                        </div>
+                        @error('disponibilite')
+                            <span class="invalid-feedback text-start" role="alert">
+                                <p>{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="col-4 btn btn-primary">
+                            Modifier
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+            @if (session('success'))
+                <div class="alert alert-success col-md-5 mx-auto" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+    </div>
+@endsection
