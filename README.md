@@ -1,9 +1,26 @@
 ## Project Setup
 
+## ! Cloner le repo et installer les dépendances
+
+```bash
+  git clone https://github.com/Warisaremou/tp_02.git
+  code tp_02
+  cp .env.example .env
+  composer install
+  php artisan key:generate
+  php artisan storage:link
+  php artisan migrate
+  php artisan db:seed
+  npm install
+  npm run dev
+  php artisan serve
+```
+# NB: Avant de lancer la migration, configurer le fichier .env en ajoutant le nom de la base de donnée et le mot de passe de la BDD
+
 Installer laravel
 
 ```bash
-  composer create-project laravel/laravel TP_02
+  composer create-project laravel/laravel tp_02
   cd TP_02
 ```
 
